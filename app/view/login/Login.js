@@ -9,8 +9,11 @@ Ext.define('MyApp.view.login.Login', {
         'Ext.form.Panel',
         'Ext.form.field.Text',
         'Ext.layout.container.Fit',
-        'Ext.toolbar.Fill'
+        'Ext.toolbar.Fill',
+        'MyApp.view.login.LoginController'
     ],
+
+    controller: 'login',
 
     autoShow: true, // #4
     height: 170, // #5
@@ -27,13 +30,14 @@ Ext.define('MyApp.view.login.Login', {
 
     items: [{
         xtype: 'form',
+        reference: 'form',
         bodyPadding: 15,
         defaults: {
             xtype: 'textfield',
             anchor: '100%',
             labelWidth: 60,
             allowBlank: false, // #21
-            msgTarget: 'side', // #24
+            msgTarget: 'side' // #24
 
 
         },
@@ -62,13 +66,20 @@ Ext.define('MyApp.view.login.Login', {
                 {
                     xtype: 'button', //#26
                     iconCls: 'fa fa-times fa-lg',
-                    text: 'Cancel'
+                    text: 'Cancel',
+                    listeners: {
+                        click: 'onButtonClickCancel'
+                    }
                 },
                 {
                     xtype: 'button', //#27
                     formBind: true, //#28
                     iconCls: 'fa fa-sign-in fa-lg',
-                    text: 'Submit'
+                    text: 'Submit',
+                    listeners: {
+                        click: 'onButtonClickSubmit'
+
+                    }
                 }
 
             ]

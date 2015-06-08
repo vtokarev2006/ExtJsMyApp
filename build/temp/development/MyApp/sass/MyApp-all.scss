@@ -1,4 +1,4 @@
-$image-search-path: 'C:/xampp/htdocs/MyApp/build/development/MyApp/resources';
+$image-search-path: 'C:/Users/vtokarev/IdeaProjects/ExtJsMyApp/build/development/MyApp/resources';
 $theme-name:  'ext-theme-neptune' !default;
 $include-ext-abstractcomponent: true;
 $include-ext-abstractcontainer: true;
@@ -910,6 +910,7 @@ $include-extthemeneptune-toolbar-paging: true;
 $include-extthemeneptune-toolbar-toolbar: true;
 $include-myapp-application: true;
 $include-myapp-view-login-login: true;
+$include-myapp-view-login-logincontroller: true;
 $include-myapp-view-main-main: true;
 $include-myapp-view-main-maincontroller: true;
 $include-myapp-view-main-mainmodel: true;
