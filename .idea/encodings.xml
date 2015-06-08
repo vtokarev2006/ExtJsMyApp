@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/app.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Application.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/CustomVTypes.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/view/login/Login.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sass/etc/all.scss" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sass/etc/fontAwesome/_core.scss" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sass/etc/fontAwesome/_variables.scss" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
