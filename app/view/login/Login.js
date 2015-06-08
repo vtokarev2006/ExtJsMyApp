@@ -25,7 +25,7 @@ Ext.define('MyApp.view.login.Login', {
     title: 'Login', // #9
     closeAction: 'hide', // #10
     closable: false, // #11
-    draggable: false, // #12
+    draggable: true, // #12
     resizable: false, // #13
 
     items: [{
@@ -45,15 +45,27 @@ Ext.define('MyApp.view.login.Login', {
         items: [{
             name: 'user',
             fieldLabel: 'User',
-            vtype: 'alphanum', // #22
+            //vtype: 'alphanum', // #22
             minLength: 3, // #23
-            maxLength: 25
+            maxLength: 25,
+            listeners: {
+                specialkey: 'onTextFieldSpecialKey'
+            }
+
+
         }, {
+            id: 'password',
             inputType: 'password',
             name: 'password',
             fieldLabel: 'Password',
             maxLength: 25,
-            vtype: 'customPass'
+            //vtype: 'customPass',
+            enableKeyEvents: true,
+            listeners: {
+                specialkey: 'onTextFieldSpecialKey',
+                keypress: 'onTextFieldKeyPress'
+            }
+
         }],
         dockedItems: [{
             xtype: 'toolbar',

@@ -2,56 +2,136 @@ Ext.define('MyApp.view.login.LoginController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.login',
 
-    onTextFieldSpecialKey: function(field, e, options){ }, // #4
-    onTextFieldKeyPress: function(field, e, options){ }, // #5
+    requires: [
+        'Ext.form.action.Action',
+        'MyApp.util.Util',
+        'MyApp.view.main.Main',
+        'MyApp.view.login.CapsLockTooltip'
+    ],
 
-    onButtonClickCancel: function(button, e, options){
+    onTextFieldSpecialKey: function (field, e, options) {
 
-        this.lookupReference('form').reset();
+        if (e.getKey() === e.ENTER ) {
 
-    }, // #6
+            this.doLogin();
 
-
-
-    onButtonClickSubmit: function(button, e, options){
-
-        var me = this;
-
-        if (me.lookupReference('form').isValid){
-            me.doLogin();
         }
 
 
 
 
 
+    }, // #4
+    onTextFieldKeyPress: function (field, e, options) {
+
+
+        var charCode = e.getCharCode(),
+            me = this;
+        console.log(e.getCharCode());
+
+        if((e.shiftKey && charCode >= 97 && charCode <= 122) || //#2
+            (!e.shiftKey && charCode >= 65 && charCode <= 90)){
+            if(me.capslockTooltip === undefined){ //#3
+                me.capslockTooltip = Ext.widget('capslocktooltip'); //#4
+
+            }
+            me.capslockTooltip.show(); //#5
+        } else {
+            if(me.capslockTooltip !== undefined){ //#6
+                me.capslockTooltip.hide(); //#7
+            }
+        }
+
+
+    }, // #5
+
+    onButtonClickCancel: function (button, e, options) {
+
+        this.lookupReference('form').reset();
+
+    }, // #6
+
+
+    onButtonClickSubmit: function (button, e, options) {
+
+        var me = this;
+
+        if (me.lookupReference('form').isValid) {
+            me.doLogin();
+        }
+
+
     }, // #7
 
-    doLogin: function() {
+    doLogin: function () {
 
-        var me = this,
-            form = me.lookupReference('form');
+        console.log('doLogin');
 
-        form.submit({
+        var me = this;
+        var form = me.lookupReference('form');
 
-            clientValidation: true,
-            url: 'php/security/admin.php',
-            scope: me,
-            success: 'onLoginSuccess',
-            failure: 'onLoginFailure'
+        if (form.isValid()) {
 
-        })
+            me.getView().mask('Authenticating... Please wait...');
 
+            form.submit({
 
+                clientValidation: true,
+                url: 'php/security/login.php',
+                scope: me,
+                success: 'onLoginSuccess',
+                failure: 'onLoginFailure'
+
+            })
+
+        }
 
     }, // #8
 
 
+    onLoginFailure: function (form, action) {
+        var me = this;
 
-    onLoginFailure: function(form, action) { }, // #9
-    onLoginSuccess: function(form, action) { },// #10
+        me.getView().unmask();
 
-    init: function() {
+        console.log(action);
+
+
+
+        var result = MyApp.util.Util.decodeJSON(action.response.responseText);
+
+        switch (action.failureType) {
+
+            case Ext.form.action.Action.CLIENT_INVALID:
+                MyApp.util.Util.showErrorMsg('Form fields may not be submitted with invalid values');
+                break;
+
+            case Ext.form.action.Action.CONNECT_FAILURE:
+
+                MyApp.util.Util.showErrorMsg(result.msg);
+                break;
+
+            case Ext.form.action.Action.SERVER_INVALID:
+
+                MyApp.util.Util.showErrorMsg(result.msg);
+
+        }
+
+
+    }, // #9
+    onLoginSuccess: function (form, action) {
+
+        var me = this;
+
+        me.getView().unmask();
+
+
+        me.getView().close(); //#1
+        Ext.create('MyApp.view.main.Main'); //#2
+
+    },// #10
+
+    init: function () {
 
     }
 });

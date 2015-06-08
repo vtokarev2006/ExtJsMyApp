@@ -8,6 +8,10 @@
 Ext.define('MyApp.view.main.Main', {
     extend: 'Ext.container.Container',
     requires: [
+        'Ext.Component',
+        'Ext.layout.container.Border',
+        'Ext.panel.Panel',
+        'Ext.tab.Panel',
         'MyApp.view.main.MainController',
         'MyApp.view.main.MainModel'
     ],

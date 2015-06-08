@@ -7,6 +7,7 @@ Ext.define('MyApp.Application', {
     extend: 'Ext.app.Application',
 
     requires: [
+        'Ext.tip.QuickTipManager',
         'Ext.util.DelayedTask'
     ],
 
@@ -22,18 +23,17 @@ Ext.define('MyApp.Application', {
 
     launch: function () {
 
+        Ext.tip.QuickTipManager.init();
+
         var me = this;
 
         var task = new Ext.util.DelayedTask(function(){
             me.splashscreen.fadeOut({
-                duration: 1000,
+                duration: 500,
                 listeners: {
                     afteranimate: function(){
                         console.log('launch');
-                        //Ext.create('MyApp.view.login.Login');
                         Ext.widget('login-dialog');
-
-
 
                     }
                 }
