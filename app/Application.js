@@ -42,7 +42,7 @@ Ext.define('MyApp.Application', {
 
         });
 
-        task.delay(200);
+        task.delay(0);
    },
 
     init: function () {
