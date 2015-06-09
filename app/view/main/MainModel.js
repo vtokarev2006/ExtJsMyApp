@@ -7,8 +7,14 @@ Ext.define('MyApp.view.main.MainModel', {
     alias: 'viewmodel.main',
 
     data: {
-        name: 'MyApp'
+        name: 'MyApp', //#4
+        appName: 'DVD Rental Store', //#5
+        appHeaderIcon: '<span class="fa fa-desktop fa-lg appheader-logo">', //#6
+        footer: 'Mastering ExtJS book - Loiane Groner - http://packtpub.com' //#7
     }
 
-    //TODO - add data, formulas and/or methods to support your view
+
+
+
+
 });

@@ -49,6 +49,7 @@ Ext.define('MyApp.view.login.LoginController', {
 
         this.lookupReference('form').reset();
 
+
     }, // #6
 
 

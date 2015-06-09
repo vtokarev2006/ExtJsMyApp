@@ -7,18 +7,25 @@
  */
 Ext.define('MyApp.view.main.Main', {
     extend: 'Ext.container.Container',
+    plugins: 'viewport',
+
     requires: [
-        'Ext.Component',
+        'Ext.container.Container',
         'Ext.layout.container.Border',
-        'Ext.panel.Panel',
-        'Ext.tab.Panel',
+        'Ext.plugin.Viewport',
+        'MyApp.view.main.Footer',
+        'MyApp.view.main.Header',
+
         'MyApp.view.main.MainController',
-        'MyApp.view.main.MainModel'
+        'MyApp.view.main.MainModel',
+
+        'MyApp.view.main.Panel'
     ],
 
     xtype: 'app-main',
-    
+
     controller: 'main',
+
     viewModel: {
         type: 'main'
     },
@@ -29,35 +36,24 @@ Ext.define('MyApp.view.main.Main', {
 
     items: [
         {
-        xtype: 'component',
             region: 'north',
-            padding: 10,
-            height: 40,
-            html: 'Mu Company - My Company Motto',
-            cls: 'appBanner'
-
-
-
+            xtype: 'appheader'
         },
         {
-        xtype: 'panel',
-        bind: {
-            title: '{name}'
+            region: 'west',
+            xtype: 'container',
+            width: 200,
+            split: true
         },
-        region: 'west',
-        html: '<ul><li>This area is commonly used for navigation, for example, using a "tree" component.</li></ul>',
-        width: 250,
-        split: true,
-        tbar: [{
-            text: 'Button',
-            handler: 'onClickButton'
-        }]
-    },{
-        region: 'center',
-        xtype: 'tabpanel',
-        items:[{
-            title: 'Tab 1',
-            html: '<h2>Content appropriate for the current navigation.</h2>'
-        }]
-    }]
+
+        {
+            region: 'south',
+            xtype: 'appfooter'
+        },
+        {
+            region: 'center',
+            xtype: 'mainpanel'
+        }
+
+    ]
 });

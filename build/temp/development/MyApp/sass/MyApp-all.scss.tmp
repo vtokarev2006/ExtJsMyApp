@@ -910,6 +910,7 @@ $include-extthemeneptune-toolbar-paging: true;
 $include-extthemeneptune-toolbar-toolbar: true;
 $include-myapp-application: true;
 $include-myapp-util-util: true;
+$include-myapp-view-login-capslocktooltip: true;
 $include-myapp-view-login-login: true;
 $include-myapp-view-login-logincontroller: true;
 $include-myapp-view-main-main: true;
